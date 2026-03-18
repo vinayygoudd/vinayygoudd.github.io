@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dudala Vinay Kumar Goud — Data Analyst</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #0f2744;
+      --navy-mid: #1a3a5c;
+      --accent: #c8a96e;
+      --accent-light: #f2e8d0;
+      --bg: #f7f5f1;
+      --bg-card: #ffffff;
+      --text: #1c1c2e;
+      --text-muted: #5a6a7a;
+      --border: #e4dfd6;
+      --shadow: 0 4px 24px rgba(15,39,68,0.07);
+      --shadow-hover: 0 16px 48px rgba(15,39,68,0.14);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(247,245,241,0.93); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 6%; height: 66px;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--navy); letter-spacing: 0.02em; }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--navy); color: #fff;
+      padding: 8px 20px; border-radius: 3px;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--navy-mid); color: #fff; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 120px 6% 80px;
+      background: linear-gradient(160deg, #f7f5f1 0%, #eef1f6 55%, #f3efe8 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero-blob1 {
+      position: absolute; top: -80px; right: -60px;
+      width: 520px; height: 520px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,169,110,0.13) 0%, transparent 68%);
+      pointer-events: none;
+    }
+    .hero-blob2 {
+      position: absolute; bottom: -120px; left: -80px;
+      width: 440px; height: 440px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(15,39,68,0.07) 0%, transparent 68%);
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 1080px; margin: 0 auto; position: relative; z-index: 1; display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent-light); color: var(--navy);
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 7px 16px; border-radius: 2px; margin-bottom: 1.4rem;
+      animation: fadeUp 0.5s ease both;
+    }
+    .hero-tag span { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; display: inline-block; }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 5.5vw, 4rem);
+      font-weight: 700; line-height: 1.15;
+      color: var(--navy); margin-bottom: 1.2rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero-sub {
+      font-size: 1.05rem; color: var(--text-muted); max-width: 520px;
+      margin-bottom: 2.2rem; font-weight: 400;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.6s 0.3s ease both; }
+    .btn-primary {
+      background: var(--navy); color: #fff;
+      padding: 13px 28px; border-radius: 3px;
+      font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      text-decoration: none; transition: all 0.2s; border: 2px solid var(--navy);
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary:hover { background: transparent; color: var(--navy); }
+    .btn-outline {
+      background: transparent; color: var(--navy);
+      padding: 13px 28px; border-radius: 3px;
+      font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      text-decoration: none; transition: all 0.2s; border: 2px solid var(--navy);
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-outline:hover { background: var(--navy); color: #fff; }
+    .hero-stats { display: flex; flex-direction: column; gap: 1.4rem; animation: fadeUp 0.6s 0.4s ease both; }
+    .stat-box {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      padding: 18px 24px; border-radius: 4px;
+      box-shadow: var(--shadow); min-width: 160px; text-align: center;
+    }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--navy); line-height: 1; }
+    .stat-label { font-size: 0.72rem; color: var(--text-muted); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
+
+    /* SECTIONS */
+    section { padding: 90px 6%; }
+    .section-inner { max-width: 1080px; margin: 0 auto; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1rem;
+    }
+    .section-label::before { content: ''; display: block; width: 28px; height: 2px; background: var(--accent); }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 700; color: var(--navy); margin-bottom: 3rem; }
+
+    /* SKILLS */
+    #skills { background: var(--navy); }
+    #skills .section-label { color: var(--accent); }
+    #skills .section-label::before { background: var(--accent); }
+    #skills .section-title { color: #fff; }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .skill-card {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px; padding: 24px 28px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .skill-card:hover { background: rgba(255,255,255,0.09); transform: translateY(-2px); }
+    .skill-card-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .skill-card-value { color: rgba(255,255,255,0.85); font-size: 0.92rem; line-height: 1.6; }
+
+    /* PROJECTS */
+    #projects { background: var(--bg); }
+    .projects-grid { display: flex; flex-direction: column; gap: 2.5rem; }
+    .project-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 8px; overflow: hidden;
+      box-shadow: var(--shadow); transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .project-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+    .project-top { display: grid; grid-template-columns: 1fr 1fr; }
+    .project-info { padding: 36px 40px; }
+    .project-num { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 700; color: var(--accent-light); line-height: 1; margin-bottom: 0.5rem; }
+    .project-title { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: var(--navy); margin-bottom: 0.8rem; line-height: 1.3; }
+    .project-tools { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.2rem; }
+    .tool-tag { background: var(--accent-light); color: var(--navy); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; }
+    .project-desc { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.6rem; }
+    .project-highlights { list-style: none; margin-bottom: 1.8rem; }
+    .project-highlights li { font-size: 0.87rem; color: var(--text); padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; gap: 10px; align-items: flex-start; }
+    .project-highlights li:last-child { border-bottom: none; }
+    .project-highlights li::before { content: '\2192'; color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .btn-view-dashboard {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--navy); color: #fff;
+      padding: 11px 22px; border-radius: 3px;
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      border: none; cursor: pointer; transition: background 0.2s;
+    }
+    .btn-view-dashboard:hover { background: var(--navy-mid); }
+    .project-preview {
+      background: var(--bg); display: flex; align-items: center; justify-content: center;
+      cursor: pointer; position: relative; overflow: hidden; min-height: 300px;
+      border-left: 1px solid var(--border); transition: background 0.2s;
+    }
+    .project-preview:hover { background: #eef0f5; }
+    .project-preview img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .preview-placeholder {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px; padding: 2rem; text-align: center;
+    }
+    .ph-icon { width: 56px; height: 56px; border-radius: 50%; background: var(--accent-light); display: flex; align-items: center; justify-content: center; }
+    .preview-placeholder p { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
+    .preview-placeholder span { font-size: 0.7rem; color: #aaa; font-family: monospace; }
+    .preview-overlay {
+      position: absolute; inset: 0; background: rgba(15,39,68,0.5);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .project-preview:hover .preview-overlay { opacity: 1; }
+    .preview-overlay span { background: #fff; color: var(--navy); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 20px; border-radius: 3px; }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 1000;
+      background: rgba(10,20,40,0.92); backdrop-filter: blur(8px);
+      align-items: center; justify-content: center; padding: 2rem;
+    }
+    .lightbox.active { display: flex; animation: fadeIn 0.2s ease; }
+    .lightbox-inner { position: relative; max-width: 90vw; max-height: 88vh; }
+    .lightbox-inner img { max-width: 100%; max-height: 88vh; border-radius: 6px; box-shadow: 0 24px 80px rgba(0,0,0,0.5); display: block; object-fit: contain; }
+    .lightbox-placeholder { background: var(--bg-card); border-radius: 8px; padding: 60px 80px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    .lightbox-placeholder .lp-icon { font-size: 3rem; }
+    .lightbox-placeholder h3 { font-family: 'Playfair Display', serif; color: var(--navy); font-size: 1.4rem; }
+    .lightbox-placeholder p { color: var(--text-muted); font-size: 0.9rem; }
+    .lightbox-placeholder code { background: var(--accent-light); color: var(--navy); padding: 4px 10px; border-radius: 3px; font-size: 0.85rem; }
+    .lightbox-close {
+      position: absolute; top: -44px; right: 0;
+      background: rgba(255,255,255,0.15); color: #fff; border: none;
+      width: 36px; height: 36px; border-radius: 50%; cursor: pointer;
+      font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.3); }
+
+    /* CERTIFICATIONS */
+    #certifications { background: #f0ede7; }
+    .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+    .cert-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 6px; padding: 28px 24px;
+      box-shadow: var(--shadow); cursor: pointer;
+      transition: box-shadow 0.25s, transform 0.25s;
+      position: relative; overflow: hidden;
+    }
+    .cert-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); }
+    .cert-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-4px); }
+    .cert-issuer { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .cert-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; color: var(--navy); line-height: 1.4; margin-bottom: 16px; }
+    .cert-view { display: inline-flex; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); transition: color 0.2s; }
+    .cert-card:hover .cert-view { color: var(--navy); }
+
+    /* CONTACT */
+    #contact { background: var(--navy); text-align: center; }
+    #contact .section-label { color: var(--accent); }
+    #contact .section-label::before { background: var(--accent); }
+    #contact .section-title { color: #fff; margin-bottom: 1rem; }
+    #contact p { color: rgba(255,255,255,0.6); font-size: 1rem; margin-bottom: 2.5rem; }
+    .contact-btns { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+    .contact-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 30px; border-radius: 3px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+    .contact-btn-li { background: #0077B5; color: #fff; border: 2px solid #0077B5; }
+    .contact-btn-li:hover { background: transparent; color: #0077B5; }
+    .contact-btn-gh { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.4); }
+    .contact-btn-gh:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+    .contact-btn-mail { background: var(--accent); color: var(--navy); border: 2px solid var(--accent); }
+    .contact-btn-mail:hover { background: transparent; color: var(--accent); }
+    .contact-info { margin-top: 3rem; color: rgba(255,255,255,0.35); font-size: 0.82rem; }
+
+    footer { background: #0a1929; text-align: center; padding: 24px 6%; color: rgba(255,255,255,0.25); font-size: 0.78rem; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-stats { flex-direction: row; flex-wrap: wrap; }
+      .project-top { grid-template-columns: 1fr; }
+      .project-preview { min-height: 220px; border-left: none; border-top: 1px solid var(--border); }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">VKG</div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:vinaygoud6281@gmail.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-blob1"></div>
+  <div class="hero-blob2"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-tag"><span></span> Open to Opportunities</div>
+      <h1>Dudala Vinay<br/>Kumar <em>Goud</em></h1>
+      <p class="hero-sub">Data Analyst — turning raw datasets into boardroom-ready insights using Python, SQL, Power BI &amp; Excel.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-outline">Get In Touch</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-box"><div class="stat-num">3</div><div class="stat-label">Projects</div></div>
+      <div class="stat-box"><div class="stat-num">4</div><div class="stat-label">Certifications</div></div>
+      <div class="stat-box"><div class="stat-num">4</div><div class="stat-label">Tools</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-label">What I Work With</div>
+    <h2 class="section-title">Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal"><div class="skill-card-label">Languages</div><div class="skill-card-value">SQL &nbsp;·&nbsp; Python</div></div>
+      <div class="skill-card reveal"><div class="skill-card-label">Data Analysis</div><div class="skill-card-value">EDA · Data Cleaning &amp; Pre-processing · Feature Engineering · Statistical Analysis · KPI Monitoring</div></div>
+      <div class="skill-card reveal"><div class="skill-card-label">Visualization</div><div class="skill-card-value">Power BI (DAX, Interactive Dashboards) · Matplotlib · Seaborn</div></div>
+      <div class="skill-card reveal"><div class="skill-card-label">Spreadsheets</div><div class="skill-card-value">MS Excel (PivotTables, Power Query, What-If Models) · Google Sheets</div></div>
+      <div class="skill-card reveal"><div class="skill-card-label">Libraries</div><div class="skill-card-value">Pandas · NumPy · Matplotlib · Seaborn</div></div>
+      <div class="skill-card reveal"><div class="skill-card-label">Tools</div><div class="skill-card-value">Jupyter Notebook · Google Colab · Git / GitHub</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-label">Work Showcase</div>
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+
+      <!-- OLIST -->
+      <div class="project-card reveal">
+        <div class="project-top">
+          <div class="project-info">
+            <div class="project-num">01</div>
+            <div class="project-title">Olist E-Commerce Business Performance Analysis</div>
+            <div class="project-tools">
+              <span class="tool-tag">Python</span><span class="tool-tag">MySQL</span><span class="tool-tag">Power BI</span><span class="tool-tag">Excel</span>
+            </div>
+            <p class="project-desc">End-to-end business performance analysis of 96,478 real e-commerce orders — revenue trends, RFM customer segmentation, seller KPIs &amp; delivery impact analysis.</p>
+            <ul class="project-highlights">
+              <li>Merged 8 relational tables; engineered RFM scores for 93,358 customers</li>
+              <li>25+ SQL queries using CTEs, window functions &amp; NTILE() segmentation</li>
+              <li>3-page Power BI dashboard tracking R$13.2M revenue over 20 months</li>
+              <li>Found 3% repeat rate &amp; 1.39-point review drop from delivery delays</li>
+            </ul>
+            <button class="btn-view-dashboard" onclick="openLightbox('olist')">View Dashboard</button>
+          </div>
+          <div class="project-preview" onclick="openLightbox('olist')">
+            <img src="images/olist-dashboard.png" alt="Olist Dashboard" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="preview-placeholder" style="display:none;">
+              <div class="ph-icon"><svg width="24" height="24" fill="none" stroke="#c8a96e" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+              <p>Dashboard Preview</p><span>images/olist-dashboard.png</span>
+            </div>
+            <div class="preview-overlay"><span>Click to Expand</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CUSTOMER BEHAVIOUR -->
+      <div class="project-card reveal">
+        <div class="project-top">
+          <div class="project-info">
+            <div class="project-num">02</div>
+            <div class="project-title">Customer Behaviour Analysis</div>
+            <div class="project-tools">
+              <span class="tool-tag">Python</span><span class="tool-tag">SQL</span><span class="tool-tag">Power BI</span>
+            </div>
+            <p class="project-desc">Behavioural and demographic analysis of 3,900 customer transactions to uncover subscription opportunities and revenue drivers.</p>
+            <ul class="project-highlights">
+              <li>Segmented customers by age group &amp; subscription status using SQL + Pandas</li>
+              <li>Found 73% non-subscriber rate — a major growth opportunity</li>
+              <li>Power BI dashboard with 4 slicers: AOV $59.76, Avg Rating 3.75</li>
+              <li>Clothing identified as top revenue &amp; volume driver across all categories</li>
+            </ul>
+            <button class="btn-view-dashboard" onclick="openLightbox('customer')">View Dashboard</button>
+          </div>
+          <div class="project-preview" onclick="openLightbox('customer')">
+            <img src="images/customer-dashboard.png" alt="Customer Behaviour Dashboard" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="preview-placeholder" style="display:none;">
+              <div class="ph-icon"><svg width="24" height="24" fill="none" stroke="#c8a96e" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+              <p>Dashboard Preview</p><span>images/customer-dashboard.png</span>
+            </div>
+            <div class="preview-overlay"><span>Click to Expand</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ECOMMERCE DASHBOARD -->
+      <div class="project-card reveal">
+        <div class="project-top">
+          <div class="project-info">
+            <div class="project-num">03</div>
+            <div class="project-title">E-Commerce Sales Performance Dashboard</div>
+            <div class="project-tools">
+              <span class="tool-tag">Power BI</span><span class="tool-tag">DAX</span><span class="tool-tag">SQL</span><span class="tool-tag">Python</span><span class="tool-tag">Excel</span>
+            </div>
+            <p class="project-desc">Executive-grade multi-year sales dashboard tracking $5.5M revenue across global markets with deep payment and category analysis.</p>
+            <ul class="project-highlights">
+              <li>Preprocessed 30-column multi-year dataset; built executive Power BI dashboard</li>
+              <li>DAX measures for KPI cards, profit margins &amp; monthly trend tracking</li>
+              <li>Sports &amp; Outdoors led with ~$790K profit; digital payments at 70%+</li>
+              <li>May identified as peak revenue month (~$500K)</li>
+            </ul>
+            <button class="btn-view-dashboard" onclick="openLightbox('ecommerce')">View Dashboard</button>
+          </div>
+          <div class="project-preview" onclick="openLightbox('ecommerce')">
+            <img src="images/ecommerce-dashboard.png" alt="E-Commerce Dashboard" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="preview-placeholder" style="display:none;">
+              <div class="ph-icon"><svg width="24" height="24" fill="none" stroke="#c8a96e" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+              <p>Dashboard Preview</p><span>images/ecommerce-dashboard.png</span>
+            </div>
+            <div class="preview-overlay"><span>Click to Expand</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="section-inner">
+    <div class="section-label">Credentials</div>
+    <h2 class="section-title">Certifications</h2>
+    <div class="certs-grid">
+      <div class="cert-card reveal" onclick="openLightbox('cert-deloitte')">
+        <div class="cert-issuer">Deloitte · Forage</div>
+        <div class="cert-name">Data Analytics Job Simulation</div>
+        <div class="cert-view">View Certificate &#8594;</div>
+      </div>
+      <div class="cert-card reveal" onclick="openLightbox('cert-ibm1')">
+        <div class="cert-issuer">IBM · SkillsBuild</div>
+        <div class="cert-name">Python for Data Analysis</div>
+        <div class="cert-view">View Certificate &#8594;</div>
+      </div>
+      <div class="cert-card reveal" onclick="openLightbox('cert-ibm2')">
+        <div class="cert-issuer">IBM · SkillsBuild</div>
+        <div class="cert-name">Data Analysis with Python</div>
+        <div class="cert-view">View Certificate &#8594;</div>
+      </div>
+      <div class="cert-card reveal" onclick="openLightbox('cert-cisco')">
+        <div class="cert-issuer">Cisco</div>
+        <div class="cert-name">Data Analytics Essentials</div>
+        <div class="cert-view">View Certificate &#8594;</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label">Let's Connect</div>
+    <h2 class="section-title">Get In Touch</h2>
+    <p>Actively looking for fresher Data Analyst roles in Hyderabad. Open to startups &amp; product companies.</p>
+    <div class="contact-btns">
+      <a href="https://linkedin.com/in/vinay-goud-9a1593282" target="_blank" class="contact-btn contact-btn-li">LinkedIn</a>
+      <a href="https://github.com/vinayygoudd" target="_blank" class="contact-btn contact-btn-gh">GitHub</a>
+      <a href="mailto:vinaygoud6281@gmail.com" class="contact-btn contact-btn-mail">Email Me</a>
+    </div>
+    <div class="contact-info">6281718456 &nbsp;·&nbsp; Hyderabad, Telangana</div>
+  </div>
+</section>
+
+<footer>&#169; 2025 Dudala Vinay Kumar Goud &nbsp;·&nbsp; Built with GitHub Pages</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">&#10005;</button>
+    <div id="lightbox-content"></div>
+  </div>
+</div>
+
+<script>
+  const imageMap = {
+    olist:           { src: 'images/olist-dashboard.png',     label: 'Olist E-Commerce Dashboard',            file: 'olist-dashboard.png' },
+    customer:        { src: 'images/customer-dashboard.png',  label: 'Customer Behaviour Dashboard',           file: 'customer-dashboard.png' },
+    ecommerce:       { src: 'images/ecommerce-dashboard.png', label: 'E-Commerce Sales Performance Dashboard', file: 'ecommerce-dashboard.png' },
+    'cert-deloitte': { src: 'images/cert-deloitte.png',       label: 'Deloitte Data Analytics Certificate',    file: 'cert-deloitte.png' },
+    'cert-ibm1':     { src: 'images/cert-ibm1.png',           label: 'IBM — Python for Data Analysis',         file: 'cert-ibm1.png' },
+    'cert-ibm2':     { src: 'images/cert-ibm2.png',           label: 'IBM — Data Analysis with Python',        file: 'cert-ibm2.png' },
+    'cert-cisco':    { src: 'images/cert-cisco.png',          label: 'Cisco Data Analytics Essentials',        file: 'cert-cisco.png' },
+  };
+
+  function openLightbox(key) {
+    const item = imageMap[key];
+    const lb = document.getElementById('lightbox');
+    const content = document.getElementById('lightbox-content');
+    const img = new Image();
+    img.onload = () => {
+      content.innerHTML = '';
+      img.style.cssText = 'max-width:100%;max-height:88vh;border-radius:6px;box-shadow:0 24px 80px rgba(0,0,0,0.5);display:block;';
+      content.appendChild(img);
+    };
+    img.onerror = () => {
+      content.innerHTML = `<div class="lightbox-placeholder">
+        <div class="lp-icon">🖼️</div>
+        <h3>${item.label}</h3>
+        <p>Upload your image to the <strong>images/</strong> folder as:</p>
+        <code>${item.file}</code>
+      </div>`;
+    };
+    img.src = item.src;
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox(e) {
+    if (!e || e.target === document.getElementById('lightbox') || e.currentTarget.classList.contains('lightbox-close')) {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox({}); });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(el => { if (el.isIntersecting) el.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
